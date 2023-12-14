@@ -24,8 +24,6 @@ juce_add_plugin (${PROJECT_NAME}
     FORMATS Standalone AU VST3
 )
 
-juce_generate_juce_header (${PROJECT_NAME})
-
 add_compile_definitions (
     JUCE_DISABLE_JUCE_VERSION_PRINTING=1
     JUCE_DISPLAY_SPLASH_SCREEN=0
@@ -36,8 +34,8 @@ add_compile_definitions (
     JUCE_VST3_CAN_REPLACE_VST2=0
 )
 
+juce_generate_juce_header (${PROJECT_NAME})
 target_sources (${PROJECT_NAME} PRIVATE ${SOURCE})
-
 target_link_libraries (${PROJECT_NAME}
 PRIVATE
     juce::juce_audio_utils
