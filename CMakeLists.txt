@@ -1,5 +1,3 @@
-# Example Audio Plugin CMakeLists.txt
-
 cmake_minimum_required (VERSION 3.16..3.22)
 project (juce_audio_plugin VERSION 0.0.1)
 
@@ -26,6 +24,9 @@ add_compile_definitions (
     JUCE_VST3_CAN_REPLACE_VST2=0
 )
 
+add_compile_definitions (
+    JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=${JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP}
+)
 
 if (JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP)
     list (APPEND SOURCE "shared/StandaloneFilterApp.cpp")
@@ -34,10 +35,6 @@ endif()
 if (JUCE_GENERATE_JUCE_HEADER)
     juce_generate_juce_header (${PROJECT_NAME})
 endif()
-
-add_compile_definitions (
-    JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=${JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP}
-)
 
 target_sources ( ${PROJECT_NAME} PRIVATE ${SOURCE})
 target_link_libraries ( ${PROJECT_NAME}
