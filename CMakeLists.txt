@@ -17,6 +17,7 @@ juce_add_plugin ( ${PROJECT_NAME}
     PLUGIN_CODE Dem0
     FORMATS Standalone AU VST3
 )
+
 add_compile_definitions (
     JUCE_DISABLE_JUCE_VERSION_PRINTING=1
     JUCE_DISPLAY_SPLASH_SCREEN=0
