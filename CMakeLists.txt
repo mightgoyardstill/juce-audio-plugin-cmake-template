@@ -27,7 +27,6 @@ add_compile_definitions (
 add_compile_definitions (
     JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=${JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP}
 )
-
 if (JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP)
     list (APPEND SOURCE "shared/StandaloneFilterApp.cpp")
 endif()
