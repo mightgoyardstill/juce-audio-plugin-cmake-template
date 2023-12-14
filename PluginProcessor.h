@@ -41,8 +41,8 @@ public:
     using AudioProcessor::processBlock;
 
     //==============================================================================
-    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override                         { return true; }
+    juce::AudioProcessorEditor* createEditor() override;
 
     //==============================================================================
     const juce::String getName() const override             { return JucePlugin_Name; }
