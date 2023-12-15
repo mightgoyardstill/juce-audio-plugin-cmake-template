@@ -4,6 +4,9 @@ project (juce_audio_plugin VERSION 0.0.1)
 set (juce_dir "$ENV{HOME}/Documents/Code/JUCE/")
 add_subdirectory (${juce_dir} "${PROJECT_BINARY_DIR}/juce")
 
+option (JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
+option (JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
+
 file (GLOB_RECURSE SOURCE CONFIGURE_DEPENDS *.cpp *.h)
 set  (JUCE_GENERATE_JUCE_HEADER 1)
 set  (JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP 0)
@@ -14,6 +17,7 @@ juce_add_plugin ( ${PROJECT_NAME}
     PLUGIN_MANUFACTURER_CODE Juce
     PLUGIN_CODE Dem0
     FORMATS Standalone AU VST3
+    COPY_PLUGIN_AFTER_BUILD TRUE
 )
 
 add_compile_definitions (
@@ -27,9 +31,8 @@ add_compile_definitions (
 add_compile_definitions (
     JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=${JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP}
 )
-
 if (JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP)
-    list (APPEND SOURCE "shared/StandaloneFilterApp.cpp")
+    list (APPEND SOURCE "shared/standalone/StandaloneFilterApp.cpp")
 endif()
 
 if (JUCE_GENERATE_JUCE_HEADER)
@@ -37,6 +40,7 @@ if (JUCE_GENERATE_JUCE_HEADER)
 endif()
 
 target_sources ( ${PROJECT_NAME} PRIVATE ${SOURCE})
+
 target_link_libraries ( ${PROJECT_NAME}
 PRIVATE
     juce::juce_audio_utils
